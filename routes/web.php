@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,17 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// ADMIN
+Route::prefix('admin')->name('admin.')->group(function (){
+    Route::controller(AdminController::class)->group(function (){
+        Route::get('', 'index')->name('index');
+    });
+});
+
+// POST
+Route::prefix('post')->name('post.')->group(function (){
+    Route::controller(PostController::class)->group(function (){
+       Route::get('/post', 'show')->name('show');
+    });
+});
