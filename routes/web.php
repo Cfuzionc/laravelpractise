@@ -21,15 +21,17 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // ADMIN
-Route::prefix('admin')->name('admin.')->group(function (){
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function (){
     Route::controller(AdminController::class)->group(function (){
         Route::get('', 'index')->name('index');
     });
+    Route::get('/create', [PostController::class, 'create'])->name('create');
+    Route::post('/post', [PostController::class, 'store'])->name('store');
 });
 
 // POST
 Route::prefix('post')->name('post.')->group(function (){
     Route::controller(PostController::class)->group(function (){
-       Route::get('/post', 'show')->name('show');
+       Route::get('{post}', 'show')->name('show');
     });
 });
