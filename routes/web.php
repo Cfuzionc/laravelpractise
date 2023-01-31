@@ -25,8 +25,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function (){
     Route::controller(AdminController::class)->group(function (){
         Route::get('', 'index')->name('index');
     });
-    Route::get('/create', [PostController::class, 'create'])->name('create');
-    Route::post('/post', [PostController::class, 'store'])->name('store');
+    Route::get('post/create', [PostController::class, 'create'])->name('post.create');
+    Route::post('/post', [PostController::class, 'store'])->name('post.store');
+    Route::get('post/index', [PostController::class, 'index'])->name('post.index');
 });
 
 // POST

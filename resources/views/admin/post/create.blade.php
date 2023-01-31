@@ -2,7 +2,7 @@
     @section('content')
         <h1>Create</h1>
 
-        <form method="post" action="{{route('admin.store')}}" enctype="multipart/form-data">
+        <form method="post" action="{{route('admin.post.store')}}" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="title">Title</label>
@@ -16,7 +16,7 @@
                 <label for="title">Upload file</label>
                 <input type="file" class="form-control-file" id="post_image" name="post_image">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
         </form>
     @endsection
 </x-admin-master>
